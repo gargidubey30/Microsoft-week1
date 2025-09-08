@@ -1,4 +1,7 @@
-class Solution {
+
+
+//using 2 loops
+
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         int n = nums.size();
@@ -14,3 +17,44 @@ public:
         return {}; // return empty vector if no solution (though problem guarantees one)
     }
 };
+
+
+
+// better - using map
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+int n=nums.size();
+        map<int, int> mp;
+        for(int i=0; i<n; i++){
+            int a=nums[i];
+            int b=target-nums[i];
+            if(mp.find(b)!=mp.end()){
+                return {mp[b],i};
+            }
+            mp[a]=i;
+        }
+        return {-1,-1};
+        
+    }
+};
+
+
+
+class Solution {
+public:
+    bool twoSum(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+
+        int i = 0, j = nums.size() - 1;
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+            if (sum == target) return true;
+            else if (sum < target) i++;
+            else j--;
+        }
+        return false;
+    }
+};
+
